@@ -1,0 +1,20 @@
+---
+# this is the build file used to build the package
+# it should not be confused with the build file that is part of the package, and which
+# define the functions the package should expose
+
+# the build profiles define instructions for creating artisan packages
+# in this case only one profile exists but more can be added
+# ypu can tell artisan which profile to use as part of the `art build` command
+profiles:
+  - name: default
+    description: |
+      this profile packages the content of the ./pkg folder
+      the ./pkg folder contains the files to be packaged
+    # assigns a type to the built package, it can be anything
+    # it is used to tell which type of package it is when listing packages
+    # `exec` is used to declare the package is executable - i.e. it contains functions that can create side effects
+    type: exec
+    # the target is the folder to be packaged
+    target: ./pkg
+...

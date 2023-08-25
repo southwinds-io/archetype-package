@@ -1,0 +1,8 @@
+---
+# this file defines the variables that can be passed to public functions (exported) in the package
+input:
+  var:
+    - name: MESSAGE
+      description: |
+        a message to print to stdout
+...

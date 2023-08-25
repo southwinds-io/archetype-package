@@ -1,0 +1,60 @@
+---
+# note you can define environment variables below
+# you can also shell out using the syntax `$[command here]`
+env:
+  WHOAMI: $[whoami]
+
+# any exported functions below are promoted as part of the API of the package
+functions:
+  - name: say-message
+    # setting this ensures the function is public - i.e. can be called by package users
+    export: true
+    description: |
+      this function is a test stub to show structure of the function definition
+    run:
+      # this statement echoes the passed-in MESSAGE to stdout
+      - echo ${MESSAGE}
+    # this tells artisan that the MESSAGE variable is used by this function
+    # note that MESSAGE must be defined in the input.yaml file
+    input:
+      var:
+        - MESSAGE
+
+  - name: say-hello
+    export: true
+    description: |
+      calls an external bash script to print a Hello World message
+    run:
+      # invokes the bash script in the scripts folder
+      # be mindful of the use of `bash` command below and the shebang line within the script `#!/usr/bin/env bash`
+      - bash scripts/say-hello.sh
+
+  - name: who-am-i
+    export: true
+    description: |
+      this is an example of how to invoke an internal function from this function
+    run:
+      # note the use of the $(function-name) operator to invoke another function within the build file
+      - $(who-am-i-internal)
+
+  - name: say-hello-polyglot
+    export: true
+    description: |
+      shows how to call many commands in multiple statements
+    run:
+      - echo "hello!\n"
+      - echo "hola!\n"
+      - echo "salut!\n"
+      - echo "hallo!\n"
+
+  # below there is a private (to the package) function
+  - name: who-am-i-internal
+    description: |
+      this is an internal function that can only be invoked from another function
+      note there is not `export: true` attribute
+    run:
+      # the line blow echoes the WHOAMI variable defined in the `env` section at the top of the file
+      # note that the `env` section can also be defined at function level and will take precedence over the one
+      # defined at file level
+      - echo "I am ${WHOAMI}"
+...
