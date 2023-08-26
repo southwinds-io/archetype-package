@@ -19,15 +19,13 @@ $ git clone https://github.com/southwinds-io/archetype-package <project-name>
 
 ### Building the package
 
-To build the package type the following command from within the root folder:
+To build the package use the ready made function in the root build file:
 
 ```bash
-$ art build -t localhost:8082/test/archetype:1.0 -p default .
+$ art run build
 ```
 
-> *The command above is saying:
-build me a package called `localhost:8082/test/archetype:1.0` using the `default` build profile that is located in 
-the current folder's `.` build file*
+> NOTE the use of `run` to run functions in a build.yaml file directly, as opposed to `exe` used below to call functions in built packages.
 
 If you know docker, artisan works in a similar way, in regard to tagging, pulling, pushing and building operations.
 
@@ -126,4 +124,10 @@ $ 2023/08/26 10:30:23.310411 ART INFO: Hello World!
 
 $ art exe localhost:8082/test/archetype:1.0 who-am-i
 $ 2023/08/26 10:30:52.797623 ART INFO: I am joe.blogs
+
+$ art exe localhost:8082/test/archetype:1.0 say-hello-polyglot
+$ 2023/08/26 10:33:42.828695 ART INFO: hello!
+$ 2023/08/26 10:33:42.831021 ART INFO: hola!
+$ 2023/08/26 10:33:42.833002 ART INFO: salut!
+$ 2023/08/26 10:33:42.834972 ART INFO: hallo!
 ```

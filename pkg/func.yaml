@@ -42,10 +42,10 @@ functions:
     description: |
       shows how to call many commands in multiple statements
     run:
-      - echo "hello!\n"
-      - echo "hola!\n"
-      - echo "salut!\n"
-      - echo "hallo!\n"
+      - echo "hello!"
+      - echo "hola!"
+      - echo "salut!"
+      - echo "hallo!"
 
   # below there is a private (to the package) function
   - name: who-am-i-internal
