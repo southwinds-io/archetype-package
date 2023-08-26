@@ -3,6 +3,20 @@
 # it should not be confused with the build file that is part of the package, and which
 # define the functions the package should expose
 
+# this section provides configuration variables affecting the package build, change as required
+env:
+  # the artisan registry to build the package for
+  ART_REG: localhost:8082
+  # the full package name
+  PKG_NAME: test/archetype
+  # the version tag for the package
+  VER: 1.0
+  # the users who can open this package, change to match the domain of your user or leave it blank if no-one is
+  # supposed to ever open this package
+  OPEN_POLICY: "^.*@southwinds.io$"
+  # the path where scripts are located
+  SCRIPT_PATH: pkg/scripts
+
 # the build profiles define instructions for creating artisan packages
 # in this case only one profile exists but more can be added
 # ypu can tell artisan which profile to use as part of the `art build` command
@@ -17,4 +31,18 @@ profiles:
     type: exec
     # the target is the folder to be packaged
     target: ./pkg
+
+functions:
+  - name: build
+    description: |
+      builds this package
+    run:
+      - $(chmodx)
+      - art build -t ${ART_REG}/${PKG_NAME}:${VER} -p default --open-policy ${OPEN_POLICY} .
+
+  - name: chmodx
+    description: |
+      ensures all executable scripts have correct permissions before packaging
+    run:
+      - chmod +x ${SCRIPT_PATH}/hello-world.sh
 ...

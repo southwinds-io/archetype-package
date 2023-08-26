@@ -1,8 +1,16 @@
 ---
 # this file defines the variables that can be passed to public functions (exported) in the package
 input:
+  # the section below defines standard variables
   var:
     - name: MESSAGE
       description: |
         a message to print to stdout
+      default: Hello there!
+
+#  # the section below defines variables that carry sensitive values
+#  secret:
+#    - name: PASSWORD
+#      description: |
+#        a password for demo purposes
 ...

@@ -27,7 +27,7 @@ functions:
     run:
       # invokes the bash script in the scripts folder
       # be mindful of the use of `bash` command below and the shebang line within the script `#!/usr/bin/env bash`
-      - bash scripts/say-hello.sh
+      - bash scripts/hello-world.sh
 
   - name: who-am-i
     export: true
